@@ -53,6 +53,7 @@ const dataObj = JSON.parse(data);
 
 const slugs = dataObj.map((el) => slugify(el.productName, { lower: true }));
 console.log(slugs);
+
 const server = http.createServer((req, res) => {
   // console.log(req);
   // console.log(req.url);
@@ -77,7 +78,8 @@ const server = http.createServer((req, res) => {
     const product = dataObj[query.id];
     const output = replaceTemplate(tempProduct, product);
     res.end(output);
-
+    // console.log(query);
+    // res.end("This is PRODUCT");
     // API
   } else if (pathname === "/api") {
     res.writeHead(200, {
@@ -93,7 +95,7 @@ const server = http.createServer((req, res) => {
     });
     res.end("<h1>Page not found!</h1>");
   }
-  res.end("hello from the server");
+  // res.end("hello from the server");
 });
 
 server.listen(8000, "127.0.0.1", () => {
